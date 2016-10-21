@@ -1,4 +1,4 @@
-package com.join.learn.activiti.d;
+package com.join.learn.activiti.d_var;
 
 import java.io.Serializable;
 

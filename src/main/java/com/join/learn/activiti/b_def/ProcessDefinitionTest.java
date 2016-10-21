@@ -1,11 +1,9 @@
-package com.join.learn.activiti.b;
+package com.join.learn.activiti.b_def;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.List;
 import java.util.zip.ZipInputStream;
 
@@ -14,10 +12,7 @@ import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
-import org.h2.store.fs.FileUtils;
 import org.junit.Test;
-import org.springframework.util.FileCopyUtils;
-import org.springframework.util.FileSystemUtils;
 
 public class ProcessDefinitionTest {
 	//从默认配置文件activiti.cfg.xml创建ProcessEngine

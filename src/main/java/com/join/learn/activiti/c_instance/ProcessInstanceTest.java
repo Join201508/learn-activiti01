@@ -1,4 +1,4 @@
-package com.join.learn.activiti.c;
+package com.join.learn.activiti.c_instance;
 
 import java.util.List;
 
