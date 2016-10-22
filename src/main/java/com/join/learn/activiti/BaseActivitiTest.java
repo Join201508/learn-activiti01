@@ -2,6 +2,7 @@ package com.join.learn.activiti;
 
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngines;
@@ -69,6 +70,17 @@ public class BaseActivitiTest {
 		printProcessInstance(pi);
 		return pi;
 	}
+	
+	/**
+	 * 启动一个流程实例
+	 * act_ru_task、act_ru_execution、act_re_procdef
+	 */
+	public ProcessInstance startProcessByKey(String processDefinitionKey,Map<String,Object> vars){
+		ProcessInstance pi=engine.getRuntimeService()
+			.startProcessInstanceByKey(processDefinitionKey,vars);//processDefinitionKey即流程配置bpmn文件的process节点的ID
+		printProcessInstance(pi);
+		return pi;
+	}
 
 	/**
 	 * 启动一个流程实例
@@ -129,7 +141,7 @@ public class BaseActivitiTest {
 		}
 	}
 	
-	private void printProcessInstance(ProcessInstance pi) {
+	public void printProcessInstance(ProcessInstance pi) {
 		System.out.println();
 		System.out.println("#####流程实例启动成功########################");
 		System.out.println("流程定义ID："+pi.getProcessDefinitionId());
