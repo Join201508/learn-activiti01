@@ -16,7 +16,7 @@ public class EquenceFlowTest extends BaseActivitiTest{
 	
 	@Test
 	public void deploy(){
-		super.deploy("sequence连线测试", "diagrams/sequenceFlow.bpmn", "diagrams/sequenceFlow.png");
+		super.deployByResourcePath("sequence连线测试", "diagrams/sequenceFlow.bpmn", "diagrams/sequenceFlow.png");
 	}
 	
 	@Test

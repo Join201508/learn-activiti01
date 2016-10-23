@@ -1,4 +1,4 @@
-package com.join.learn.activiti.j_group;
+package com.join.learn.activiti.i_userTask.candidate_users;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,10 +15,15 @@ import com.join.learn.activiti.BaseActivitiTest;
  * @author Administrator
  *
  */
-public class GroupTest extends BaseActivitiTest {
+public class CandidateUsersTest extends BaseActivitiTest {
+	/**
+	 * 注意：UserTask节点的MainConfig中配置 Candidate users
+	 */
 	@Test
 	public void deploy(){
-		super.deployByInStream("userTask组任任务4", "GroupProcess.bpmn", "GroupProcess.png");
+		String processDefName="userTask候选人示例5";
+		String processFileNamePrefix="CandidateUsersProcess";
+		super.deploy(processDefName, processFileNamePrefix);
 	}
 	
 	@Test
@@ -30,17 +35,17 @@ public class GroupTest extends BaseActivitiTest {
 		 * */
 		Map<String,Object> vars=new HashMap<>();
 		vars.put("userIds", "周大,周中,周小");//英文逗号！！
-		super.startProcessByKey("groupProcess",vars);
+		super.startProcessByKey("candidateUsersProcess",vars);
 	}
 	
 	@Test
-	public void queryGroupUserByTaskId(){
-		String taskId="2505";
-		queryGroupUserByTaskId(taskId);
+	public void queryCandidateUsersByTaskId(){
+		String taskId="30005";
+		queryCandidateUsersByTaskId(taskId);
 		
 	}
 
-	private void queryGroupUserByTaskId(String taskId) {
+	private void queryCandidateUsersByTaskId(String taskId) {
 		List<IdentityLink> idttlList=engine.getTaskService()
 			.getIdentityLinksForTask(taskId);
 		for(IdentityLink idttl:idttlList){
@@ -53,7 +58,7 @@ public class GroupTest extends BaseActivitiTest {
 	 */
 	@Test
 	public void claim(){
-		String taskId="2505";
+		String taskId="30005";
 		String userId="周中";
 		
 		//认领前
@@ -61,7 +66,6 @@ public class GroupTest extends BaseActivitiTest {
 				.createTaskQuery()
 				.taskId(taskId)
 				.singleResult();
-		
 		
 		/*认领任务*/
 		engine.getTaskService()	
@@ -77,32 +81,32 @@ public class GroupTest extends BaseActivitiTest {
 		System.out.println("认领后，任务认领人（重新查询）："+taskAfter.getAssignee());
 	}
 	
-	@Test
-	public void complete(){
-		String taskId="8405";
-		engine.getTaskService().complete(taskId);
-	}
-	
 	//向组任务中添加成员
 	@Test
-	public void addUser(){
-		String taskId = "2505";
+	public void addCandidateUser(){
+		String taskId = "30005";
 		String userId = "候选人1";
-		queryGroupUserByTaskId(taskId);
+		queryCandidateUsersByTaskId(taskId);
 		engine.getTaskService().addCandidateUser(taskId, userId);
 		System.out.println("#####添加后");
-		queryGroupUserByTaskId(taskId);
+		queryCandidateUsersByTaskId(taskId);
 	}
 
 	//向组任务中删除成员
 	@Test
-	public void removeUser(){
-		String taskId = "2505";
+	public void removeCandidateUser(){
+		String taskId = "30005";
 		String userId = "候选人1";
-		queryGroupUserByTaskId();
+		queryCandidateUsersByTaskId();
 		engine.getTaskService().deleteCandidateUser(taskId, userId);
 		System.out.println("#####删除后");
-		queryGroupUserByTaskId();
+		queryCandidateUsersByTaskId();
+	}
+	
+	@Test
+	public void complete(){
+		String taskId="2505";
+		engine.getTaskService().complete(taskId);
 	}
 
 }

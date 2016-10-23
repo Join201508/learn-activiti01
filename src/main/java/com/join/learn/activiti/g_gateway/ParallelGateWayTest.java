@@ -11,7 +11,7 @@ public class ParallelGateWayTest extends BaseActivitiTest{
 
 	@Test
 	public void deploy(){
-		super.deployByInStream("并行网关-测试", "ParallelGateWay.bpmn", "ParallelGateWay.png");
+		super.deploy("并行网关-测试", "ParallelGateWay.bpmn", "ParallelGateWay.png");
 	}
 	
 	@Test 

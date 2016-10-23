@@ -11,7 +11,7 @@ public class ExclusiveGateWayTest extends BaseActivitiTest{
 
 	@Test
 	public void deploy(){
-		super.deploy("费用报销-排他网关", 
+		super.deployByResourcePath("费用报销-排他网关", 
 				"com/join/learn/activiti/g_gateway/ExclusiveGateWay.bpmn", 
 				"com/join/learn/activiti/g_gateway/ExclusiveGateWay.png");
 	}

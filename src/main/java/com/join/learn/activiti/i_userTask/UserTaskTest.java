@@ -14,7 +14,7 @@ import junit.framework.Assert;
 public class UserTaskTest extends BaseActivitiTest {
 	@Test
 	public void deploy(){
-		super.deployByInStream("UserTask节点示例流程3", 
+		super.deploy("UserTask节点示例流程3", 
 				"UserTaskProcess.bpmn", 
 				"UserTaskProcess.png");
 	}

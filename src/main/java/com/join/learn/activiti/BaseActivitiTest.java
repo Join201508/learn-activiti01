@@ -30,11 +30,11 @@ public class BaseActivitiTest {
 	 * 
 	 * 注意：部署多次会产生多个版本
 	 */
-	public void deploy(String defName,String bpmnPath,String pngPath){
+	public void deployByResourcePath(String processDefName,String bpmnPath,String pngPath){
 		RepositoryService service=engine.getRepositoryService();
 		Deployment deployment=
 				service.createDeployment()//创建一个部署对象
-					.name(defName)//指定流程：act_re_deployment.name_
+					.name(processDefName)//指定流程：act_re_deployment.name_
 					.addClasspathResource(bpmnPath)//加载资源文件:"diagrams/helloworld.bpmn"
 					.addClasspathResource(pngPath)//"diagrams/helloworld.png"
 					.deploy();//完成部署
@@ -43,7 +43,7 @@ public class BaseActivitiTest {
 		
 	}
 	
-	public void deployByInStream(String defName,String bpmnFileName,String pngFileName){
+	public void deploy(String processDefName,String bpmnFileName,String pngFileName){
 		
 		InputStream bpmnInStream=this.getClass().getResourceAsStream(bpmnFileName);
 		InputStream pngInStream=this.getClass().getResourceAsStream(pngFileName);
@@ -51,13 +51,19 @@ public class BaseActivitiTest {
 		RepositoryService service=engine.getRepositoryService();
 		Deployment deployment=
 				service.createDeployment()//创建一个部署对象
-					.name(defName)//指定流程：act_re_deployment.name_
+					.name(processDefName)//指定流程：act_re_deployment.name_
 					.addInputStream(bpmnFileName, bpmnInStream)
 					.addInputStream(pngFileName, pngInStream)
 					.deploy();//完成部署
 		
 		printProcessDefinition(service, deployment);
 		
+	}
+	
+	public void deploy(String processDefName,String processFileNamePrefix){
+		String bpmnFileName=processFileNamePrefix+".bpmn";
+		String pngFileName=processFileNamePrefix+".png";
+		deploy(processDefName, bpmnFileName, pngFileName);
 	}
 
 	/**

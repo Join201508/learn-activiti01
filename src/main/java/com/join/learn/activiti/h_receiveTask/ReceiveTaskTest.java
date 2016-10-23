@@ -9,7 +9,7 @@ import com.join.learn.activiti.BaseActivitiTest;
 public class ReceiveTaskTest extends BaseActivitiTest {
 	@Test
 	public void deploy(){
-		super.deployByInStream("receiveTast学习示例", 
+		super.deploy("receiveTast学习示例", 
 					"ReceiveTaskTest.bpmn", 
 					"ReceiveTaskTest.png");
 		
