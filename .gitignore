@@ -29,22 +29,9 @@ rebel.xml
 
 */.gitignore
 
-#忽略mybatis 自动生成的代码，因为这些代码会打包到jar
-/omega-mbg/src/main/java/**/*.java
-/omega-mbg/src/main/java/**/*.xml
-
 **/bin/
 
 #忽略前端gulp自动化构建生成的文件
-/omega-static/mp/node_modules/
-/omega-static/mp/rev/
-/omega-static/mp/build/
-/omega-static/mp/build.bat
-
-/omega-static/web/node_modules/
-/omega-static/web/rev/
-/omega-static/web/build/
-/omega-static/web/build.bat
 
 ##externalToolBuilders
 .externalToolBuilders/

@@ -8,22 +8,21 @@
 	<name>Activiti学习 - By ZhouYong </name>
 
 	<properties>
-		<activiti-version>5.21.0</activiti-version>
+		<activiti-version>5.22.0</activiti-version>
 		<org.slf4j-version>1.7.12</org.slf4j-version>
 	</properties>
 
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/org.activiti/activiti-engine -->
 		<dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>activiti-engine</artifactId>
-			<version>${activiti-version}</version>
+		    <groupId>org.activiti</groupId>
+		    <artifactId>activiti-engine</artifactId>
+		    <version>${activiti-version}</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.activiti/activiti-spring -->
 		<dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>activiti-spring</artifactId>
-			<version>${activiti-version}</version>
+		    <groupId>org.activiti</groupId>
+		    <artifactId>activiti-spring</artifactId>
+		    <version>${activiti-version}</version>
 		</dependency>
 
 		<dependency>
@@ -70,8 +69,20 @@
 	</dependencies>
 	<repositories>
 		<repository>
+			<id>nexus-aliyun</id>
+		    <name>Nexus aliyun</name>
+		    <layout>default</layout>
+		    <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+		    <snapshots>
+		        <enabled>false</enabled>
+		    </snapshots>
+		    <releases>
+		        <enabled>true</enabled>
+		    </releases>
+    		<!--      
 			<id>Activiti</id>
 			<url>http://maven.alfresco.com/nexus/content/repositories/activiti</url>
+			 -->
 		</repository>
 	</repositories>
 	<build>
