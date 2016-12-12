@@ -20,6 +20,7 @@ hs_err_pid*
 # Target Files
 */target/*
 **/classes
+.bpmn/*
 
 # MyBatis Files
 .springBeans
