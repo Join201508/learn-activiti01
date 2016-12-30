@@ -2,11 +2,13 @@
 package com.join.learn.activiti.a;
 
 import java.util.List;
+import java.util.Map;
 
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngineConfiguration;
 import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.RepositoryService;
+import org.activiti.engine.impl.history.HistoryLevel;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
@@ -29,6 +31,8 @@ public class HelloWorld {
         // 从默认配置文件activiti.cfg.xml创建ProcessEngineConfiguration
         ProcessEngineConfiguration config = ProcessEngineConfiguration.createProcessEngineConfigurationFromResourceDefault();
         config.setDatabaseSchemaUpdate("drop-create");// 删除所有表，然后创建，单元测试清空数据时使用
+        config.setHistory(HistoryLevel.FULL.getKey());
+        config.setHistoryLevel(HistoryLevel.FULL);
         ProcessEngine engine = config.buildProcessEngine();// 构建
 
         log.info("\n===========");
@@ -38,6 +42,11 @@ public class HelloWorld {
         System.out.println("密码：" + config.getJdbcPassword());
         System.out.println("通过activiti.cfg.xml配置创建流程引擎:" + engine);
         System.out.println("引擎名称:" + engine.getName());
+        log.info("\n===========");
+        Map<String, String> properties = engine.getManagementService().getProperties();
+        properties.forEach((k, v) -> {
+            System.out.println(k + "=" + v);
+        });
         log.info("\n===========");
     }
 
