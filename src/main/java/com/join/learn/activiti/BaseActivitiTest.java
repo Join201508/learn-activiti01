@@ -34,6 +34,14 @@ public class BaseActivitiTest {
             .deploy();// 完成部署
 
         printProcessDefinition(service, deployment);
+        
+        engine.getFormService();
+        engine.getHistoryService();
+        engine.getIdentityService();
+        engine.getManagementService();
+        engine.getRepositoryService();
+        engine.getRuntimeService();
+        engine.getTaskService();
 
     }
 
