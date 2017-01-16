@@ -6,7 +6,7 @@ SELECT * FROM act_re_deployment ORDER BY DEPLOY_TIME_ DESC; #部署对象表：�
 SELECT * FROM act_re_procdef ORDER BY DEPLOYMENT_ID_ DESC,VERSION_ DESC;    #流程定义表：版本信息等，当多次部署的流程的key相同时，在此表中保存对应的版本信息(version_字段)
 SELECT * FROM act_ge_bytearray;  #资源文件表
 
-SELECT @inst_id:="92501";
+SELECT @inst_id:="47501";
 /*流程实例*/
 SELECT * FROM act_ru_execution ORDER BY PROC_INST_ID_ DESC, ID_ ASC ; #正在执行的对象
 SELECT * FROM act_ru_execution WHERE PROC_INST_ID_=@inst_id;
@@ -27,6 +27,7 @@ SELECT * FROM act_hi_actinst WHERE PROC_INST_ID_=@inst_id ORDER BY start_time_; 
 SELECT * FROM act_ru_variable WHERE PROC_INST_ID_=@inst_id  ; #taskService.setVariableLocal时TASK_ID_有值，taskService.setVariable该值为空
 SELECT * FROM act_hi_varinst WHERE PROC_INST_ID_=@inst_id ; #流程变量历史
 SELECT * FROM act_ge_bytearray WHERE id_=1501;
+SELECT * FROM act_hi_detail;
 
 /*用户、角色管理*/
 SELECT * FROM act_id_group;      #角色组表
