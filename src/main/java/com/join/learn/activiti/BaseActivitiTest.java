@@ -8,10 +8,14 @@ import java.util.Map;
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.RepositoryService;
+import org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity;
+import org.activiti.engine.impl.pvm.process.ActivityImpl;
+import org.activiti.engine.impl.task.TaskDefinition;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
+import org.junit.Test;
 
 public class BaseActivitiTest {
 
@@ -155,5 +159,20 @@ public class BaseActivitiTest {
         System.out.println("#######################################");
     }
 
+    @Test
+    public void test() {
+        String name = "";
+        // engine.getRepositoryService().createDeploymentQuery().deploymentName(name).list();
+        System.out.println(engine.getTaskService().createTaskQuery().taskInvolvedUser("1").list());
+        ProcessDefinition processDefinition =
+            engine.getRepositoryService().createProcessDefinitionQuery().processDefinitionId("loanAudit:1:4").singleResult();
+        System.out.println(processDefinition.getName());
+        System.out.println(processDefinition.getClass().getName());
+        List<ActivityImpl> list = ((ProcessDefinitionEntity) processDefinition).getActivities();
+        Map<String, TaskDefinition> map = ((ProcessDefinitionEntity) processDefinition).getTaskDefinitions();
+        System.out.println(((ProcessDefinitionEntity) processDefinition).getVariables());
+        System.out.println(list);
+        System.out.println(map);
+    }
 
 }

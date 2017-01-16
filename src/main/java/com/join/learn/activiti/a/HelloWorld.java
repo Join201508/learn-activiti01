@@ -1,6 +1,7 @@
 
 package com.join.learn.activiti.a;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -62,9 +63,10 @@ public class HelloWorld {
     public void deploymentProcessDefinition() {
         RepositoryService service = engine.getRepositoryService();
         Deployment deployment = service.createDeployment()// 创建一个部署对象
-            .name("helloworld流程入门")// 指定流程：act_re_deployment.name_
+            .name("helloworld流程入门1")// 指定流程：act_re_deployment.name_
             .addClasspathResource("diagrams/helloworld.bpmn")// 加载资源文件
             .addClasspathResource("diagrams/helloworld.png")
+            .category("目录test")
             .deploy();// 完成部署
 
         System.out.println("流程ID：" + deployment.getId());
@@ -78,6 +80,9 @@ public class HelloWorld {
     public void startProcess() {
         String processDefinitionKey = "helloworld";
         ProcessInstance pi = engine.getRuntimeService().startProcessInstanceByKey(processDefinitionKey);// processDefinitionKey即流程配置bpmn文件的process节点的ID
+        List<Deployment> list =
+            engine.getRepositoryService().createDeploymentQuery().processDefinitionKey(processDefinitionKey).list();
+
         System.out.println("流程实例ID：" + pi.getId());
         System.out.println("流程定义ID：" + pi.getProcessDefinitionId());
     }
@@ -127,9 +132,11 @@ public class HelloWorld {
 
     @Test
     public void completeProcessTask() {
-        String taskId = "402";
+        String taskId = "20002";
+        Map<String,Object> map=new HashMap<>();
+        map.put("test_key", "abedc");
         engine.getTaskService()// 执行任务的service
-            .complete(taskId);
+            .complete(taskId,map);
         System.out.println("任务完成：taskId=" + taskId);
     }
 }
